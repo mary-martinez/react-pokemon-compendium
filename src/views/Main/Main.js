@@ -6,6 +6,7 @@ import { fetchPokemon, fetchPokemonTypes } from '../../services/Pokemon';
 export default function Main() {
   const [pokemons, setPokemons] = useState([]);
   const [types, setTypes] = useState([]);
+  const [type, setType] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +19,7 @@ export default function Main() {
   }, []);
   return (
     <div>
-      <Dropdown types={types} />
+      <Dropdown types={types} setType={setType} />
       {pokemons.map((poke) => (
         <PokeCard key={poke.id} {...poke} />
       ))}
