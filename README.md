@@ -4,8 +4,8 @@
   1.  write your fetch function -- validate with console.log *
   1.  addUseEffect and set state with the response *
   1.  map through your state and display the name *
-  1.  build out your PokeCard component -- use static values
-  1.  map through your items and display PokeCard
+  1.  build out your PokeCard component -- use static values *
+  1.  map through your items and display PokeCard *
 - Build out types dropdown
   1. getTypes from the API
   1. call getTypes and set in state
