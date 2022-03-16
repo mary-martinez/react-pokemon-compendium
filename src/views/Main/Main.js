@@ -1,26 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import PokeCard from '../../components/PokeCard/PokeCard';
 import Dropdown from '../../components/Dropdown/Dropdown';
-import { fetchPokemon, fetchPokemonTypes } from '../../services/Pokemon';
+import { fetchPokemon, fetchPokemonTypes, fetchFilteredPokemon } from '../../services/Pokemon';
 
 export default function Main() {
-  const [pokemons, setPokemons] = useState([]);
+  const [pokemon, setPokemon] = useState([]);
   const [types, setTypes] = useState([]);
-  const [type, setType] = useState('');
+  const [type, setType] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchPokemon();
-      setPokemons(data);
+      setPokemon(data);
       const typeData = await fetchPokemonTypes();
       setTypes(typeData);
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const fetchFilteredData = async () => {
+      if (type === 'all') {
+        const data = await fetchPokemon();
+        setPokemon(data);
+      } else {
+        const data = await fetchFilteredPokemon(type);
+        setPokemon(data);
+      }
+    };
+    fetchFilteredData();
+  }, [type]);
+
+
   return (
     <div>
-      <Dropdown types={types} setType={setType} />
-      {pokemons.map((poke) => (
+      <Dropdown types={types} setType={setType} type={type} />
+      {pokemon.map((poke) => (
         <PokeCard key={poke.id} {...poke} />
       ))}
     </div>
