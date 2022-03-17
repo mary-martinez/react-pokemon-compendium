@@ -7,11 +7,11 @@
   1.  build out your PokeCard component -- use static values *
   1.  map through your items and display PokeCard *
 - Build out types dropdown
-  1. getTypes from the API
-  1. call getTypes and set in state
-  1. make state for selected dropdown
-  1. make a dropdown with the types and selected dropdown
-  1. add useEffect to call API when the dropdown changes
+  1. getTypes from the API *
+  1. call getTypes and set in state *
+  1. make state for selected dropdown *
+  1. make a dropdown with the types and selected dropdown *
+  1. add useEffect to call API when the dropdown changes *
 
 ## General Flow
 

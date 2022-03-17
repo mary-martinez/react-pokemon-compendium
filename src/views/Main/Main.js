@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PokeCard from '../../components/PokeCard/PokeCard';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import './Main.css';
 import { fetchPokemon, fetchPokemonTypes, fetchFilteredPokemon } from '../../services/Pokemon';
 
 export default function Main() {
@@ -33,11 +34,13 @@ export default function Main() {
 
 
   return (
-    <div>
+    <main>
       <Dropdown types={types} setType={setType} type={type} />
-      {pokemon.map((poke) => (
-        <PokeCard key={poke.id} {...poke} />
-      ))}
-    </div>
+      <div className='poke-container'>
+        {pokemon.map((poke) => (
+          <PokeCard key={poke.id} {...poke} />
+        ))}
+      </div>
+    </main>
   );
 }
