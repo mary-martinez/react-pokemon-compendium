@@ -9,7 +9,7 @@ export default function SortButtons({ order, setOrder }) {
   // }
   return (
     <div>
-      Sort A to Z
+      <p>Sort A to Z</p>
       <div value={order} onChange={(e) => setOrder(e.target.value)}>
         <input type='radio' value={''} name='order' defaultChecked /> none
         <input type='radio' value={'asc'} name='order' /> ascending

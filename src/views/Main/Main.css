@@ -5,8 +5,28 @@ main {
   justify-content: center;
 }
 
+p {
+  font-weight: bold;
+}
+
 select {
-  margin: 15px;
+  margin: 5px;
+}
+.controls-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px;
+}
+
+.dropdown-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-bar p{
+  margin-bottom: 10px;
 }
 
 .poke-container {

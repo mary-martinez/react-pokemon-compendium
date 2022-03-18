@@ -42,7 +42,7 @@ export default function Main() {
 
   return (
     <main>
-      <div>
+      <div className='controls-bar'>
         <Dropdown types={types} setType={setType} type={type} />
         <Search setSearchPokemon={setSearchPokemon} searchPokemon={searchPokemon} />
         <SortButtons order={order} setOrder={setOrder} />
