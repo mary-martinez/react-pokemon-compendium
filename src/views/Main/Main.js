@@ -10,6 +10,8 @@ export default function Main() {
   const [types, setTypes] = useState([]);
   const [type, setType] = useState('all');
   const [searchPokemon, setSearchPokemon] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [ascending, setAscending] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +19,7 @@ export default function Main() {
       setPokemon(data);
       const typeData = await fetchPokemonTypes();
       setTypes(typeData);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -29,7 +32,7 @@ export default function Main() {
     fetchFilteredData();
   }, [type, searchPokemon]);
 
-
+  if (loading) return <span className="loader">Load&nbsp;ng</span>;
 
   return (
     <main>
