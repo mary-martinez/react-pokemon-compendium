@@ -11,7 +11,7 @@ export async function fetchPokemonTypes() {
   return (types);
 }
 
-export async function fetchFilteredPokemon(type, searchPokemon) {
+export async function fetchFilteredPokemon(type, searchPokemon, order) {
   const params = new URLSearchParams();
   params.set('perPage', '10');
   if (type !== 'all') {
@@ -19,6 +19,10 @@ export async function fetchFilteredPokemon(type, searchPokemon) {
   }
   if (searchPokemon) {
     params.set('pokemon', searchPokemon);
+  }
+  if (order !== '') {
+    params.set('sort', 'pokemon');
+    params.set('direction', order);
   }
   const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${params.toString()}`);
   const data = await resp.json();

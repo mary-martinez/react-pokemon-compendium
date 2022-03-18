@@ -4,6 +4,7 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import Search from '../../components/Search/Search';
 import './Main.css';
 import { fetchPokemon, fetchPokemonTypes, fetchFilteredPokemon } from '../../services/Pokemon';
+import SortButtons from '../../components/SortButtons/SortButtons';
 
 export default function Main() {
   const [pokemon, setPokemon] = useState([]);
@@ -11,7 +12,7 @@ export default function Main() {
   const [type, setType] = useState('all');
   const [searchPokemon, setSearchPokemon] = useState('');
   const [loading, setLoading] = useState(true);
-  const [ascending, setAscending] = useState(true);
+  const [order, setOrder] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,11 +27,11 @@ export default function Main() {
 
   useEffect(() => {
     const fetchFilteredData = async () => {
-      const data = await fetchFilteredPokemon(type, searchPokemon);
+      const data = await fetchFilteredPokemon(type, searchPokemon, order);
       setPokemon(data);
     };
     fetchFilteredData();
-  }, [type, searchPokemon]);
+  }, [type, searchPokemon, order]);
 
   if (loading) return <span className="loader">Load&nbsp;ng</span>;
 
@@ -39,6 +40,7 @@ export default function Main() {
       <div>
         <Dropdown types={types} setType={setType} type={type} />
         <Search setSearchPokemon={setSearchPokemon} searchPokemon={searchPokemon} />
+        <SortButtons order={order} setOrder={setOrder} />
       </div>
       <div className='poke-container'>
         {pokemon.map((poke) => (

@@ -1,10 +1,20 @@
 import React from 'react';
 
-export default function SortButtons() {
+export default function SortButtons({ order, setOrder }) {
+  // const descending = false;
+  // if (ascending) {
+  //   descending = false;
+  // } else {
+  //   descending = true;
+  // }
   return (
     <div>
-      {/* <input type="radio" value="ascending" name="ascending" /> ascending
-      <input type="radio" value="descending" name="descending" /> descending */}
+      Sort A to Z
+      <div value={order} onChange={(e) => setOrder(e.target.value)}>
+        <input type='radio' value={''} name='order' defaultChecked /> none
+        <input type='radio' value={'asc'} name='order' /> ascending
+        <input type='radio' value={'desc'} name='order' /> descending
+      </div>
     </div>
   );
 }
