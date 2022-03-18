@@ -13,16 +13,20 @@ export default function Main() {
   const [searchPokemon, setSearchPokemon] = useState('');
   const [loading, setLoading] = useState(true);
   const [order, setOrder] = useState('');
-
+  const [errorMessage, setErrorMessage] = useState('');
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchPokemon();
-      setPokemon(data);
-      const typeData = await fetchPokemonTypes();
-      setTypes(typeData);
-      setLoading(false);
-    };
-    fetchData();
+    try {
+      const fetchData = async () => {
+        const data = await fetchPokemon();
+        setPokemon(data);
+        const typeData = await fetchPokemonTypes();
+        setTypes(typeData);
+        setLoading(false);
+      };
+      fetchData();
+    } catch (e) {
+      setErrorMessage('There has been a glitch in the multiverse. Please refresh the page so you can catch em all.');
+    }
   }, []);
 
   useEffect(() => {
@@ -34,6 +38,7 @@ export default function Main() {
   }, [type, searchPokemon, order]);
 
   if (loading) return <span className="loader">Load&nbsp;ng</span>;
+  if (errorMessage) return <p>{errorMessage}</p>;
 
   return (
     <main>
